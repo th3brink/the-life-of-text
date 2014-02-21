@@ -1,4 +1,6 @@
 var parser = function() {
+  var syntax = [];
+
   var objects = [
     "sword",
     "key",
@@ -30,16 +32,60 @@ var parser = function() {
     "onto",
     "with"
   ];
+  var patterns = {
+    "verb": "verb",
+    "verbDirection": "verb direction",
+    "direction": "direction",
+    "verbObject": "verb object",
+    "verbPrepositionObject": "verb preposition object",
+    "verbObjectPrepositionObject": "verb object preposition object"
+  };
 
   var parseCommand = function(words) {
     var array = splitCommandIntoArray(words);
-    var syntax = parseArrayIntoSyntaxJson(array);
-    return syntax;
+    parseArrayIntoSyntaxJson(array);
+    var json = fitsSyntax();
+    if(json.success) {
+      return syntax;
+    } else {
+      return json.message;
+    }
+  };
+
+  var fitsSyntax = function() {
+    var sentenceStructure = getSentenceStructureFromSyntax();
+    var result = isPattern(sentenceStructure);
+    if(result) {
+      return {"success": true};
+    } else {
+      return {"success": false, "message": getSyntaxError()};
+    }
+  };
+
+  var isPattern = function(sentenceStructure) {
+    for(var prop in patterns) {
+      if(patterns[prop] === sentenceStructure) {
+        return prop;
+      }
+    }
+    return false;
+  };
+
+  var getSentenceStructureFromSyntax = function() {
+    var structure = "";
+    for(var i = 0; i < syntax.length; i++) {
+      structure += syntax[i].type + " ";
+    }
+    return structure.trim();
+  };
+
+  var getSyntaxError = function () {
+    return "I don't understand.";
   };
 
   var parseArrayIntoSyntaxJson = function(wordsInArray) {
-    var syntax = [];
     var type;
+    syntax = [];
     for(var i = 0; i < wordsInArray.length; i++) {
       if(isObject(wordsInArray[i])) {
         type = "object";
@@ -54,7 +100,6 @@ var parser = function() {
       }
       syntax.push({"word": wordsInArray[i], "type": type});
     }
-    return syntax;
   };
 
   isObject = function(word) {
