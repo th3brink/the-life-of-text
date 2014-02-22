@@ -43,14 +43,14 @@ angular.module('lifeOfText.services')
         };
         allowedMove = function(loc) {
             var reason = "";
-            if (self.silenti.scenes[loc] && self.silenti.scenes[loc].allowed.denied) {
+            if (self.silenti.scenes[loc] || self.silenti.scenes[loc].allowed.denied) {
                 for(var i = 0; i < self.silenti.scenes[loc].allowed.need.length; i++) {
                     if(i < 0) {
                         reason += '<br/>';
                     }
                     reason += self.silenti.scenes[loc].allowed.need[i].reason;
                 }
-                return reason;
+                return "You can't go there. " + reason;
             }
             return true;
         };

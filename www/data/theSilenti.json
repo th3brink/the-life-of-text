@@ -117,7 +117,7 @@
                 "need": [
                     {
                         "object": "flashlight",
-                        "reason": "This area is dark"
+                        "reason": "This area is dark."
                     }
                 ],
                 "denied": false
@@ -131,7 +131,7 @@
                 "need":[
                     {
                         "object": "win",
-                        "reason": "you can't leave when it's so foggy."
+                        "reason": "You can't leave when it's so foggy."
                     }
                 ],
                 "denied": true
@@ -159,7 +159,7 @@
                 "need":[
                     {
                         "object": "flashlight",
-                        "reason": "This area is dark"
+                        "reason": "This area is dark."
                     }
                 ],
                 "denied": false
@@ -216,7 +216,7 @@
                 "need":[
                     {
                         "object": "flashlight",
-                        "reason": "This area is dark"
+                        "reason": "This area is dark."
                     }
                 ],
                 "denied": false
