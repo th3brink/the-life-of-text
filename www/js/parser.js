@@ -6,7 +6,8 @@ angular.module('lifeOfText.services', [])
       var objects = [
         "sword",
         "key",
-        "torch"
+        "torch",
+        "apartment key"
       ];
       var verbs = {
         "inventory": {"variations": ["inv", "inventory"], "structure": "inventory"},
@@ -85,7 +86,25 @@ angular.module('lifeOfText.services', [])
         var word;
         syntax = [];
         for(var i = 0; i < wordsInArray.length; i++) {
-          if(isObject(word = wordsInArray[i])) {
+          if(isObject(wordsInArray[i])) {
+            word = isObject(wordsInArray[i]);
+
+            var notFound = true;
+            var partialWord = wordsInArray[i];
+            var increment = 1;
+            if(typeof word === "string") {
+              do {
+                partialWord += " " + wordsInArray[i + increment];
+                if(partialWord === word){
+                  i = i + increment;
+                  notFound = false;
+                }
+                increment++;
+              } while(notFound && increment < wordsInArray[increment]);
+            } else {
+              word = wordsInArray[i];
+            }
+
             type = "object";
           } else if (isVerb(wordsInArray[i])) {
             word = isVerb(wordsInArray[i]);
@@ -171,6 +190,8 @@ angular.module('lifeOfText.services', [])
         for(var i = 0; i < array.length; i++) {
           if(array[i] === word) {
             return true;
+          } else if(array[i].split(' ')[0] === word) {
+            return array[i];
           }
         }
         return false;
