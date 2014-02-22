@@ -30,18 +30,21 @@ var parser = function() {
     var array = splitCommandIntoArray(words);
     parseArrayIntoSyntaxJson(array);
     var goodSyntax = isGoodSyntax();
-    return goodSyntax;
+    if(goodSyntax.success) {
+      return goodSyntax.structure;
+    } else {
+      return goodSyntax.message;
+    }
   };
 
   var isGoodSyntax = function() {
     var sentenceStructureOfVerb = getSyntaxStructureOfVerb(syntax[0].word);
     var sentenceStructureOfCommand = getSentenceStructureFromSyntax();
-    console.log(sentenceStructureOfCommand);
     if(syntax[0].type === "verb") {
       if(sentenceStructureOfVerb === sentenceStructureOfCommand) {
-        return true;
+        return {"success": true, "structure": sentenceStructureOfCommand};
       } else {
-        return false;
+        return {"success": false, "message": getSyntaxError()};
       }
     }
   };
@@ -60,9 +63,9 @@ var parser = function() {
     return sentenceStructure.trim();
   };
 
-  /*var getSyntaxError = function () {
+  var getSyntaxError = function () {
     return "I don't understand.";
-  };*/
+  };
 
   var parseArrayIntoSyntaxJson = function(wordsInArray) {
     var type;
