@@ -5,14 +5,14 @@ angular.module('lifeOfText.services')
             silenti: {}
         };
 
-        self.getSilentiStory = function (cb) {
+        self.getSilentiStory = function(cb) {
             $http.get('data/theSilenti.json')
                 .then(function(res){
                     self.silenti = res.data;
                     if (cb) cb();
-                });
+                }
+            );
         };
-
 
         self.getStoryDescription = function() {
             return self.silenti.adventure.name;
@@ -25,12 +25,12 @@ angular.module('lifeOfText.services')
                 currentLoc.location.visited = true;
                 setCurrentLocation(newLocation);
                 currentLoc = getCurrentLocation();
-                return "Moved "+ direction +" to "+ currentLoc.name;
+                return {"success": true, "message": "Moved "+ direction +" to "+ currentLoc.name};
             } else {
-                return allowedMove(currentLoc.location[direction]);
+                return {"success": false, "message": allowedMove(currentLoc.location[direction])};
             }
         };
-        getCurrentLocation = function () {
+        getCurrentLocation = function() {
             if (self.silenti.scenes[self.silenti.players.self.location]) {
                 return self.silenti.scenes[self.silenti.players.self.location];
             }
@@ -55,11 +55,11 @@ angular.module('lifeOfText.services')
             }
             return 'Invalid';
         };
-        self.getPlayerSelf = function () {
+        self.getPlayerSelf = function() {
             return self.silenti.players.self;
         };
 
-        self.getInventory = function () {
+        self.getInventory = function() {
             return self.silenti.players.self.inventory;
         };
         self.inventoryAdd = function (addMe) {
@@ -73,15 +73,18 @@ angular.module('lifeOfText.services')
             }
         };
 
-        self.getObjectsList = function () {
+        self.getObjectsList = function() {
+            console.log("getObjectsList");
+            var objects = getCurrentLocation().objects;
+            console.log(objects);
             var tmpArray = [];
-            for (var i = 0; i < objectsList.length; i++) {
-                tmpArray.push(objectsList[i].name);
+            for (var i = 0; i < objects.length; i++) {
+                tmpArray.push(objects[i].name);
             }
             return tmpArray;
         };
 
-        self.init = function (cb) {
+        self.init = function(cb) {
             if (cb) self.getSilentiStory(cb);
         };
 

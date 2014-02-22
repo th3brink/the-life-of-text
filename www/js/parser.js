@@ -222,6 +222,6 @@ angular.module('lifeOfText.services', [])
 
       return {
         parseCommand: parseCommand,
-        setObjects:setObjects
+        setObjects: setObjects
       };
     });

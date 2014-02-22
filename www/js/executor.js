@@ -15,7 +15,11 @@ angular.module('lifeOfText.services')
 
         var commands = {
             go: function(params) {
-                return Adventure.move(params[0]);
+                var result = Adventure.move(params[0]);
+                if(result.success) {
+                    Parser.setObjects(Adventure.getObjectsList());
+                }
+                return result.message;
             },
             take: function(params) {
 
