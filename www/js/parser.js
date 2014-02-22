@@ -31,12 +31,7 @@ angular.module('lifeOfText.services', [])
       var parseCommand = function(words) {
         var array = splitCommandIntoArray(words);
         parseArrayIntoSyntaxJson(array);
-        var goodSyntax = isGoodSyntax();
-        if(goodSyntax.success) {
-          return goodSyntax;
-        } else {
-          return goodSyntax.message;
-        }
+        return isGoodSyntax();
       };
 
       var isGoodSyntax = function() {
@@ -70,18 +65,15 @@ angular.module('lifeOfText.services', [])
       };
 
       var getFunctionCallFromSyntax = function() {
-        var functionCall = syntax[0].word + '(';
-        var notFirstTime = false;
+        var functionCall =  {};
+        functionCall.name = syntax[0].word;
+        functionCall.params = [];
         for(var i = 1; i < syntax.length; i++) {
           if(syntax[i].type !== "nothing") {
-            if(notFirstTime) {
-              functionCall += ', ';
-            }
-            functionCall += syntax[i].word;
-            notFirstTime = true;
+            functionCall.params.push(syntax[i].word);
           }
         }
-        return functionCall + ')';
+        return functionCall;
       };
 
       var getSyntaxError = function () {
