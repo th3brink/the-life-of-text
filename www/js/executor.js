@@ -8,6 +8,11 @@ angular.module('lifeOfText.services')
             
         };
 
+        Adventure.init(function () {
+            Parser.setObjects(Adventure.getObjectsList());
+        });
+
+
         var commands = {
             go: function(params) {
                 return Adventure.move(params[0]);

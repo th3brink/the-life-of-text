@@ -6,3 +6,13 @@
   width: 96px;
   height: 96px;
 }
+
+.home-game-container {
+    width: 50%;
+    height: 90%;
+    background-color: darkslategray;
+    opacity: 0.9;
+    box-shadow: inset 0 0 4 4 #000000;
+    margin-left: auto;
+    margin-right: auto;
+}
