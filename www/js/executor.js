@@ -51,10 +51,12 @@ angular.module('lifeOfText.services')
                 return helpString;
             },
             attack: function(params) {
-                return "Attack all the things!";
+                //TODO: make it actually attack
+                return "You killed the " + params[0];
             },
             consume: function(params) {
-                return "Consume all the things!";
+                //TODO: make it actually consume/eat
+                return "You ate the " + params[0];
             }
         };
 
