@@ -79,13 +79,14 @@
                     "uses": 1,
                     "commands": [
                         {
-                            "command":"attack",
+                            "command": "attack",
                             "worksOn": "players"
 
                         },
                         {
-                            "command":"unlock",
-                            "worksOn": 3
+                            "command": "unlock",
+                            "worksOn": 3,
+                            "default": true
 
                         }
                     ]
@@ -102,13 +103,8 @@
                     "locked": false,
                     "commands": [
                         {
-                            "command":"attack"
-
-
-                        },
-                        {
-                            "command":"bash"
-
+                            "command": "attack",
+                            "default": true
                         }
                     ]
                 }
