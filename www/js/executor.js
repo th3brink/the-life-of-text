@@ -16,9 +16,9 @@ angular.module('lifeOfText.services')
                     currentLoc.location.visited = true;
                     Adventure.setCurrentLocation(currentLoc.location[params]);
                     currentLoc = Adventure.getCurrentLocation();
-                    returnMe = "Moved "+ params +" to "+ currentLoc.name
+                    returnMe = "Moved "+ params +" to "+ currentLoc.name;
                 } else {
-                    returnMe = "invalid location"
+                    returnMe = "invalid location";
                 }
 	    		return returnMe;
 	    	},
