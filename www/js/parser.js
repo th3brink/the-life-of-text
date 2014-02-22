@@ -40,9 +40,14 @@ var parser = function() {
   var isGoodSyntax = function() {
     var sentenceStructureOfVerb = getSyntaxStructureOfVerb(syntax[0].word);
     var sentenceStructureOfCommand = getSentenceStructureFromSyntax();
+    var sentenceStructureOfVerbVariations;
+
+    sentenceStructureOfVerbVariations = getVariationsOnSyntaxStructureAsArray(sentenceStructureOfVerb);
     if(syntax[0].type === "verb") {
-      if(sentenceStructureOfVerb === sentenceStructureOfCommand) {
-        return {"success": true, "structure": sentenceStructureOfCommand};
+      for(var i = 0; i < sentenceStructureOfVerbVariations.length; i++) {
+        if(sentenceStructureOfVerbVariations[i] === sentenceStructureOfCommand) {
+          return {"success": true, "structure": sentenceStructureOfCommand};
+        }
       }
     }
     return {"success": false, "message": getSyntaxError()};
@@ -57,7 +62,7 @@ var parser = function() {
       } else {
         sentenceStructure += "{{" + syntax[prop].type + "}} ";
       }
-      i++;
+      i += 1;
     }
     return sentenceStructure.trim();
   };
@@ -164,6 +169,23 @@ var parser = function() {
 
   var splitCommandIntoArray = function(command) {
     return command.toLowerCase().split(' ');
+  };
+
+  var getVariationsOnSyntaxStructureAsArray = function(syntaxStructure) {
+    var closing;
+    var opening;
+    var variation = syntaxStructure;
+    var variations = [variation.replace(/\[/g, '').replace(/\]/g, '').trim()];
+    do {
+      closing = variation.indexOf(']');
+      opening = variation.substring(0, closing).lastIndexOf('[');
+      variation = variation.substring(0, opening) +  variation.substring(closing + 1);
+      if(variation.substring(opening, opening + 1) === " ") {
+        variation = variation.substring(0, opening) + variation.substring(opening + 1);
+      }
+      variations.push(variation.replace(/\[/g, '').replace(/\]/g, '').trim());
+    } while(variation.indexOf(']') > -1);
+    return variations;
   };
 
   return {
