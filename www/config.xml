@@ -2,10 +2,10 @@
 <widget id="com.ionicframework.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>The Life of Text</name>
     <description>
-        Startup Weekend - Provo project
+        An app for building and manging text based games. This is a demo version that comes with a simple game.
     </description>
-    <author email="support@drifty.com" href="http://ionicframework.com/">
-        Ionic Framework Team
+    <author email="th3brink@gmail.com">
+        The Life of Text
     </author>
     <content src="index.html" />
     <access origin="*" />
