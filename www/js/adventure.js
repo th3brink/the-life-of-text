@@ -1,4 +1,3 @@
-
 angular.module('lifeOfText.services')
     .factory('Adventure', function($http) {
 
@@ -11,27 +10,43 @@ angular.module('lifeOfText.services')
                 .then(function(res){
                     self.silenti = res.data;
                 });
-
         };
         self.getSilentiStory();
 
-        self.getCurrentLocation = function () {
-            if (self.silenti.scenes[self.silenti.players.self.location]) {
-                return self.silenti.scenes[self.silenti.players.self.location]
+        self.move = function(direction) {
+            var currentLoc = getCurrentLocation();
+            var newLocation = currentLoc.location[direction];
+            if (currentLoc.location[direction] !== null && allowedMove(currentLoc.location[direction]) === true) {
+                currentLoc.location.visited = true;
+                setCurrentLocation(newLocation);
+                currentLoc = getCurrentLocation();
+                return "Moved "+ direction +" to "+ currentLoc.name;
+            } else {
+                return allowedMove(currentLoc.location[direction]);
             }
-            return 'Invalid'
         };
-        self.allowedMove = function (loc) {
+        getCurrentLocation = function () {
+            if (self.silenti.scenes[self.silenti.players.self.location]) {
+                return self.silenti.scenes[self.silenti.players.self.location];
+            }
+            return 'Invalid';
+        };
+        allowedMove = function(loc) {
+            var reason = "";
             if (self.silenti.scenes[loc] && self.silenti.scenes[loc].allowed.denied) {
-                return false;
+                for(var i = 0; i < self.silenti.scenes[loc].allowed.need.length; i++) {
+                    //TODO: make the reasons show up new lines
+                    reason += self.silenti.scenes[loc].allowed.need[i].reason + " ";
+                }
+                return reason;
             }
             return true;
         };
-        self.setCurrentLocation = function (newLoc) {
+        setCurrentLocation = function(newLoc) {
             if (self.silenti.scenes[newLoc]) {
                 self.silenti.players.self.location = newLoc;
             }
-            return 'Invalid'
+            return 'Invalid';
         };
         self.getPlayerSelf = function () {
             return self.silenti.players.self;
@@ -52,6 +67,5 @@ angular.module('lifeOfText.services')
         };
 
         return self;
-
     }
 );

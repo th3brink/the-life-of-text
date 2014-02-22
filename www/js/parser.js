@@ -32,6 +32,7 @@ angular.module('lifeOfText.services', [])
       var parseCommand = function(words) {
         var array = splitCommandIntoArray(words);
         parseArrayIntoSyntaxJson(array);
+        console.log(isGoodSyntax());
         return isGoodSyntax();
       };
 
