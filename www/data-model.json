@@ -2,7 +2,7 @@
     "adventure": {
         "name": "The Silenti",
         "type": "Horror",
-        "description": "You find yourself in a dark, smoggy town called Silenti. You are here to find your friend who stopped talking to you a few months ago. ",
+        "description": "You find yourself in a dark, smoggy town called Silenti. You are here to find your friend who invited you to come visit a few weeks. He hasn't picked up his phone in the past few hours.",
         "creator": "The Life of Text",
         "storyBy": "James Brinkerhoff"
     },
@@ -11,7 +11,7 @@
         "self": {
             "id": 0,
             "name": "Tyson",
-            "description": "A quick witted person who is seeking his friend. You might want to get to know yourself better.",
+            "description": "A quick witted person who is going to visit a friend. You might want to get to know yourself better.",
             "health": 100,
             "attack": 2,
             "location": 0,
@@ -41,7 +41,7 @@
             {
                 "id": 3,
                 "name": "rat",
-                "description": "Rabid looking rat. Looks like it will attack me.",
+                "description": "Rabid looking rat. Looks like it will attack you.",
                 "health": 10,
                 "attack": 1,
                 "friendly": false,
@@ -56,7 +56,7 @@
             "name": "apartment key",
             "nickname": "apartment key (friend's)",
             "type": ["key"],
-            "description": "Your missing friend gave you a key, so you could come take care of his apartment if something were to happen to him.",
+            "description": "Your friend gave you a key, so you could come visit more often.",
             "on": false,
             "attack": 1,
             "health": -1,
@@ -69,31 +69,10 @@
                 },
                 {
                     "command":"unlock",
-                    "worksOn": 1
-
-                }
-            ]
-        },
-
-        {
-            "id": 1,
-            "name": "apartment door",
-            "nickname": "apartment door (friend's)",
-            "type": ["door"],
-            "description": "This is the door to your friend's apartment. It look brand new despite a few scratches at the bottom. Probably a rat.",
-            "on": false,
-            "attack": 1,
-            "health": 200,
-            "uses": 1,
-            "locked": true,
-            "commands": [
-                {
-                    "command":"open"
-
-
-                },
-                {
-                    "command":"unlock"
+                    "worksOn": {
+                        "scene": 0,
+                        "direction": "north"
+                    }
 
                 }
             ]
@@ -126,9 +105,53 @@
     "scenes": [
         {
             "id": 0,
-            "name": "start",
+            "name": "road outside of town",
             "description": "",
-            "story": "Unfortunately, your car broke down. Fortunately, you are near town, so you are able to walk there. Your Friend, ",
+            "type": "room",
+            "story": "Welcome to the outside of town. Unfortunately, your car ran out of gas. You attempt To Fortunately, you are near town, so you are able to walk there and get some gas. Should I sto ",
+            "events": {
+                "enter": ["save", "attack"],
+                "exit": ["save"]
+            },
+            "commands": {
+                "go":["north", "west", "east"]
+            },
+            "location": {
+                "north": 2,
+                "south": 1,
+                "visited": true
+            },
+            "objects": [
+            ],
+            "allowed": {
+                "need": [
+                    {
+                        "object": "flashlight",
+                        "reason": "This area is dark"
+                    }
+                ],
+                "denied": false
+            }
+        },
+        {
+            "id": 1,
+            "name": "private farm",
+            "allowed": {
+                "need":[
+                    {
+                        "object": "win",
+                        "reason": "you can't leave when it's so foggy."
+                    }
+                ],
+                "denied": true
+            }
+        },
+        {
+            "id": 2,
+            "name": "town entrance",
+            "description": "",
+            "type": "room",
+            "story": "Whe ",
             "events": {
                 "enter": ["save", "attack"],
                 "exit": ["save"]
@@ -137,8 +160,64 @@
                 "go":["up", "left", "right"]
             },
             "location": {
-                "x": 2,
-                "y": 0,
+                "north": 2,
+                "south": 1,
+                "visited": true
+            },
+            "allowed": {
+                "need":[
+                    {
+                        "object": "flashlight",
+                        "reason": "This area is dark"
+                    }
+                ],
+                "denied": false
+            }
+        },
+        {
+            "id": 3,
+            "name": "door to apartment",
+            "description": "This is the door to your friend's apartment. It looks brand new despite a few scratches at the bottom. Probably a rat.",
+            "type": "door",
+            "story": "",
+            "events": {
+                "enter": ["move"],
+                "exit": []
+            },
+            "commands": {
+                "go":["north"]
+            },
+            "location": {
+                "north": 5,
+                "south": 2,
+                "visited": false
+            },
+            "allowed": {
+                "need":[
+                    {
+                        "object": 0,
+                        "reason": "You need a key to the door"
+                    }
+                ],
+                "denied": false
+            }
+        },
+        {
+            "id": 4,
+            "name": "forest",
+            "description": "a dark forest that is flowing with life",
+            "type": "room",
+            "story": "even at dusk, the forest looks dark. You glance into the forest and see eye... too many eyes. 'maybe I shouldn't head into the forest until I find a source of light', is what you think while you cower under the light.",
+            "events": {
+                "enter": ["save", "attack"],
+                "exit": ["save"]
+            },
+            "commands": {
+                "go":["up", "left", "right"]
+            },
+            "location": {
+                "north": 2,
+                "south": 1,
                 "visited": true
             },
             "allowed": {
