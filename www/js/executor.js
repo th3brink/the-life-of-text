@@ -1,5 +1,5 @@
 angular.module('lifeOfText.services')
-    .factory('Executor', function(Adventure) {
+    .factory('Executor', function(Adventure, Parser) {
 
         var executeCommand = function(data) {
             var action = data.name;
@@ -38,9 +38,10 @@ angular.module('lifeOfText.services')
             },
             consume: function(params) {
                 return "Consume all the things!";
-            },
+            }
 
         };
+	    	
 
         return {
             executeCommand: executeCommand

@@ -3,17 +3,12 @@ angular.module('lifeOfText.services', [])
 
       var syntax = [];
 
-      var objects = [
-        "sword",
-        "key",
-        "torch",
-        "apartment key"
-      ];
+      var objects = [];
       var verbs = {
         "inventory": {"variations": ["inv", "inventory"], "structure": "inventory"},
         "go": {"variations": ["go", "walk"], "structure": "go {{direction}}"},
         "look": {"structure": "look [[at] {{object}}]"},
-        "put": {"structure": "put {{object}} on {{object}}"},
+        "put": {"variations":["put", "drop"], "structure": "put {{object}} on {{object}}"},
         "use": {"structure": "use {{object}} [on {{object}}]"},
         "take": {"variations": ["take", "grab"], "structure": "take {{object}}"},
         "help": {"structure": "help [{{object}}]"},
@@ -221,7 +216,12 @@ angular.module('lifeOfText.services', [])
         return variations;
       };
 
+      var setObjects = function (newObjects) {
+        objects = newObjects;
+      };
+
       return {
-        parseCommand: parseCommand
+        parseCommand: parseCommand,
+        setObjects:setObjects
       };
     });

@@ -127,6 +127,7 @@
         {
             "id": 1,
             "name": "private farm",
+            "objects": [],
             "allowed": {
                 "need":[
                     {
@@ -154,6 +155,7 @@
                 "south": 0,
                 "visited": false
             },
+            "objects": [],
             "allowed": {
                 "need":[
                     {
@@ -181,6 +183,7 @@
                 "south": 2,
                 "visited": false
             },
+            "objects": [],
             "allowed": {
                 "need":[
                     {
@@ -209,6 +212,7 @@
                 "west": 0,
                 "visited": false
             },
+            "objects": [],
             "allowed": {
                 "need":[
                     {

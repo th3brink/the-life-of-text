@@ -5,13 +5,14 @@ angular.module('lifeOfText.services')
             silenti: {}
         };
 
-        self.getSilentiStory = function () {
+        self.getSilentiStory = function (cb) {
             $http.get('data/theSilenti.json')
                 .then(function(res){
                     self.silenti = res.data;
+                    if (cb) cb();
                 });
         };
-        self.getSilentiStory();
+
 
         self.getStoryDescription = function() {
             return self.silenti.adventure.name;
@@ -70,6 +71,18 @@ angular.module('lifeOfText.services')
                     self.silenti.players.self.inventory.splice(i, 1);
                 }
             }
+        };
+
+        self.getObjectsList = function () {
+            var tmpArray = [];
+            for (var i = 0; i < objectsList.length; i++) {
+                tmpArray.push(objectsList[i].name);
+            }
+            return tmpArray;
+        };
+
+        self.init = function (cb) {
+            if (cb) self.getSilentiStory(cb);
         };
 
         return self;
