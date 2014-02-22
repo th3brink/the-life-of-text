@@ -72,7 +72,7 @@ angular.module('lifeOfText.services')
             if (self.silenti.scenes[newLoc]) {
                 self.silenti.players.self.location = newLoc;
             }
-            return 'Invalid';
+            return false;
         };
         self.getPlayerSelf = function() {
             return self.silenti.players.self;
@@ -81,13 +81,20 @@ angular.module('lifeOfText.services')
         self.getInventory = function() {
             return self.silenti.players.self.inventory;
         };
-        inventoryAdd = function (addMe) {
+        inventoryAdd = function(addMe) {
             self.silenti.players.self.inventory.push(addMe);
         };
-        self.inventoryRemove = function (addMe) {
-            for (var i = 0; i < self.silenti.players.self.inventory.length; i++) {
-                if (self.silenti.players.self.inventory[i]) {
+        self.inventoryRemove = function(addMe) {
+            for(var i = 0; i < self.silenti.players.self.inventory.length; i++) {
+                if(self.silenti.players.self.inventory[i]) {
                     self.silenti.players.self.inventory.splice(i, 1);
+                }
+            }
+        };
+        removeObjectFromScene = function(object) {
+            for(var i = 0; i < self.silenti.scenes[getCurrentLocation().id].objects.length; i++) {
+                if(self.silenti.scenes[getCurrentLocation().id].objects[i].name === object) {
+                    self.silenti.scenes[getCurrentLocation().id].objects.splice(i, 1);
                 }
             }
         };
@@ -104,6 +111,7 @@ angular.module('lifeOfText.services')
 
         self.takeObject = function(object) {
             inventoryAdd(object);
+            removeObjectFromScene(object);
             return "You took the " + object;
         };
 

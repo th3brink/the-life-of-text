@@ -41,7 +41,6 @@ angular.module('lifeOfText.controllers', []).controller('TermIndexCtrl', functio
                         output = tempString;
                     }
                     else { output = 'There is nothing in your inventory.'; }
-                    //console.log(typeof tempString);
                 }
 
             } else {

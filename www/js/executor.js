@@ -20,7 +20,9 @@ angular.module('lifeOfText.services')
                 return result.message;
             },
             take: function(params) {
-                return Adventure.takeObject(params[0]);
+                var response = Adventure.takeObject(params[0]);
+                Parser.setObjects(Adventure.getObjectsList());
+                return response;
             },
             put: function(params) {
                 return "I'm the put function";
