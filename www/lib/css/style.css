@@ -1,0 +1,24 @@
+.term {
+    height: 50%;
+    width: 95%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 15px;
+    overflow-y: auto;
+    background: #000;
+    font-family: fixedsys, LucidaTerminal, monospace;
+    color: #94ff80;
+    text-align: left;
+    padding: 1em;
+    font-size: 10px;
+    vertical-align:bottom;
+}
+.command {
+    width: 95%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+body {
+	background-color: #073642;
+}

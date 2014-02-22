@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
+angular.module('starter', ['ionic', 'starter.services', 'starter.controllers', 'starter.directives'])
 
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -24,16 +24,16 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
     })
 
     // the pet tab has its own child nav-view and history
-    .state('tab.pet-index', {
-      url: '/home',
+    .state('tab.term', {
+      url: '/term',
       views: {
-        'pets-tab': {
+        'term-tab': {
           templateUrl: 'templates/term.html',
           controller: 'TermIndexCtrl'
         }
       }
     })
-
+    /*
     .state('tab.pet-detail', {
       url: '/pet/:petId',
       views: {
@@ -43,16 +43,17 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
         }
       }
     })
-
-    .state('tab.adopt', {
-      url: '/adopt',
+    */
+    .state('tab.home', {
+      url: '/home',
       views: {
-        'adopt-tab': {
-          templateUrl: 'templates/adopt.html'
+        'home-tab': {
+          templateUrl: 'templates/home.html',
+          controller: 'HomeIndexCtrl'
         }
       }
     })
-
+    /*
     .state('tab.about', {
       url: '/about',
       views: {
@@ -61,7 +62,7 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
         }
       }
     });
-
+    */
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/home');
 

@@ -3,7 +3,7 @@ angular.module('starter.services', [])
 /**
  * A simple example service that returns some data.
  */
-.factory('PetService', function() {
+/*.factory('PetService', function() {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -23,4 +23,4 @@ angular.module('starter.services', [])
       return pets[petId];
     }
   }
-});
+})*/;
