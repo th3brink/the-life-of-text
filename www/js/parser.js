@@ -31,7 +31,7 @@ var parser = function() {
     parseArrayIntoSyntaxJson(array);
     var goodSyntax = isGoodSyntax();
     if(goodSyntax.success) {
-      return goodSyntax.structure;
+      return goodSyntax;
     } else {
       return goodSyntax.message;
     }
@@ -46,7 +46,7 @@ var parser = function() {
     if(syntax[0].type === "verb") {
       for(var i = 0; i < sentenceStructureOfVerbVariations.length; i++) {
         if(sentenceStructureOfVerbVariations[i] === sentenceStructureOfCommand) {
-          return {"success": true, "structure": sentenceStructureOfCommand};
+          return {"success": true, "structure": sentenceStructureOfCommand, "function": getFunctionCallFromSyntax()};
         }
       }
     }
@@ -65,6 +65,21 @@ var parser = function() {
       i += 1;
     }
     return sentenceStructure.trim();
+  };
+
+  var getFunctionCallFromSyntax = function() {
+    var functionCall = syntax[0].word + '(';
+    var notFirstTime = false;
+    for(var i = 1; i < syntax.length; i++) {
+      if(syntax[i].type !== "nothing") {
+        if(notFirstTime) {
+          functionCall += ', ';
+        }
+        functionCall += syntax[i].word;
+        notFirstTime = true;
+      }
+    }
+    return functionCall + ')';
   };
 
   var getSyntaxError = function () {
