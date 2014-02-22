@@ -55,7 +55,7 @@
             "name": "Road outside of town",
             "description": "Road outside of town",
             "type": "room",
-            "story": "Welcome to the outside of town. Unfortunately, your car ran out of gas. You attempt To Fortunately, you are near town, so you are able to walk there and get some gas. Should I sto ",
+            "story": "\"Welcome to Silenti!\", a sign informs you. Too bad you ran out of gas so close to town. Fortunately, you know how walk, so you can go to town and get some gas. You should probably stop by your friends place for some help before getting gas",
             "events": {
                 "enter": ["save", "attack"],
                 "exit": ["save"]
