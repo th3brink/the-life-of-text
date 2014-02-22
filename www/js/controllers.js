@@ -8,13 +8,25 @@ angular.module('lifeOfText.controllers', [])
     $scope.command = "";
     $scope.submit = function() {
         if ($scope.command) {
-            Parser.parseCommand($scope.command);
-            $scope.console.push($scope.command);
-            $scope.console.push(Parser.parseCommand($scope.command));
+
+            $scope.console.push({
+                input: $scope.command,
+                output: Parser.parseCommand($scope.command)
+            });
             $scope.command = "";
             
         }
     };
+
+    function go () {
+
+    }
+//
+//    $scope.interp = function (command) {
+//        var func = Parser.parseCommand(command);
+//        var runMe =
+//
+//    };
 
     $scope.$on('fin', function(ngRepeatFinishedEvent) {
         document.getElementById("terminal").scrollTop = document.getElementById("terminal").scrollHeight;
