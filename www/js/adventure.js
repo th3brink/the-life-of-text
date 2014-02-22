@@ -27,6 +27,9 @@ angular.module('lifeOfText.services')
             var currentLoc = getCurrentLocation();
             var newLocation = currentLoc.location[direction];
             if (currentLoc.location[direction] !== null && allowedMove(currentLoc.location[direction]) === true) {
+                if(getLocationAtId(newLocation).type === "door") {
+                    newLocation = getLocationAtId(newLocation).location[direction];
+                }
                 currentLoc.location.visited = true;
                 setCurrentLocation(newLocation);
                 currentLoc = getCurrentLocation();
@@ -35,11 +38,14 @@ angular.module('lifeOfText.services')
                 return {"success": false, "message": allowedMove(currentLoc.location[direction])};
             }
         };
-        getCurrentLocation = function() {
-            if (self.silenti.scenes[self.silenti.players.self.location]) {
-                return self.silenti.scenes[self.silenti.players.self.location];
+        getLocationAtId = function(id) {
+            if (self.silenti.scenes[id]) {
+                return self.silenti.scenes[id];
             }
-            return 'Invalid';
+            return false;
+        };
+        getCurrentLocation = function() {
+            return getLocationAtId(self.silenti.players.self.location);
         };
         allowedMove = function(loc) {
             var reason = "";

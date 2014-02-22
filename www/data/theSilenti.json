@@ -205,6 +205,28 @@
                 ],
                 "denied": false
             }
+        },
+        {
+            "id": 5,
+            "name": "Apartment",
+            "description": "Apartment",
+            "type": "room",
+            "story": "You are now in the apartment!",
+            "events": {
+                "enter": ["save"],
+                "exit": ["save"]
+            },
+            "commands": {
+            },
+            "location": {
+                "north": 3,
+                "south": 0,
+                "visited": false
+            },
+            "objects": [],
+            "allowed": {
+                "denied": false
+            }
         }
     ]
 }
