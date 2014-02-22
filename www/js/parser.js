@@ -4,6 +4,7 @@ angular.module('lifeOfText.services', [])
       var syntax = [];
 
       var objects = [];
+      var objectsInInventory = [];
       var verbs = {
         "inventory": {"variations": ["inv", "inventory"], "structure": "inventory"},
         "go": {"variations": ["go", "walk"], "structure": "go {{direction}}"},
@@ -29,7 +30,7 @@ angular.module('lifeOfText.services', [])
       var parseCommand = function(words) {
         var array = splitCommandIntoArray(words);
         parseArrayIntoSyntaxJson(array);
-        //console.log(isGoodSyntax());
+        console.log(isGoodSyntax());
         return isGoodSyntax();
       };
 
@@ -84,25 +85,15 @@ angular.module('lifeOfText.services', [])
         var word;
         syntax = [];
         for(var i = 0; i < wordsInArray.length; i++) {
-          if(isObject(wordsInArray[i])) {
-            word = isObject(wordsInArray[i]);
-
-            var notFound = true;
-            var partialWord = wordsInArray[i];
-            var increment = 1;
-            if(typeof word === "string") {
-              do {
-                partialWord += " " + wordsInArray[i + increment];
-                if(partialWord === word){
-                  i = i + increment;
-                  notFound = false;
-                }
-                increment++;
-              } while(notFound && increment < wordsInArray[increment]);
-            } else {
-              word = wordsInArray[i];
-            }
-
+          var isObjectResult = isObject(wordsInArray, i);
+          var isInventoryResult = isInventory(wordsInArray, i);
+          if(isObjectResult.success) {
+            i += isObjectResult.increment;
+            word = isObjectResult.word;
+            type = "object";
+          } else if(isInventoryResult.success) {
+            i += isInventoryResult.increment;
+            word = isInventoryResult.word;
             type = "object";
           } else if (isVerb(wordsInArray[i])) {
             word = isVerb(wordsInArray[i]);
@@ -125,8 +116,35 @@ angular.module('lifeOfText.services', [])
         syntax.push({"word": "go", "type": "verb"});
       };
 
-      var isObject = function(word) {
-        return inArray(word, objects);
+      var isObject = function(wordsInArray, i) {
+        return isMatchInArray(wordsInArray, i, objects);
+      };
+
+      var isInventory = function(wordsInArray, i) {
+        return isMatchInArray(wordsInArray, i, objectsInInventory);
+      };
+
+      var isMatchInArray = function(arrayWithSearchTerms, i, arrayToSearch) {
+        var possibleMatches = inArray(arrayWithSearchTerms[i], arrayToSearch);
+        var isFound = false;
+        var partialWord = arrayWithSearchTerms[i];
+        var increment = 1;
+        if(possibleMatches !== true) {
+          for(var j = 0; j < possibleMatches.length; j++) {
+            if(typeof possibleMatches[j] === "string") {
+              do {
+                partialWord += " " + arrayWithSearchTerms[i + increment];
+                if(partialWord === possibleMatches[j]){
+                  isFound = true;
+                }
+                increment++;
+              } while(! isFound && increment < arrayWithSearchTerms.length - 1);
+            }
+          }
+        } else {
+          isFound = true;
+        }
+        return {"success": isFound, "word": partialWord, "increment": increment};
       };
 
       var isVerb = function(word) {
@@ -185,14 +203,25 @@ angular.module('lifeOfText.services', [])
       };
 
       var inArray = function(word, array) {
+        var possibleMatches = [];
+        var splitWord;
         for(var i = 0; i < array.length; i++) {
           if(array[i] === word) {
             return true;
-          } else if(array[i].split(' ')[0] === word) {
-            return array[i];
+          } else {
+            splitWord = array[i].split(' ');
+            for(var j = 0; j < splitWord.length; j++) {
+              if(splitWord[j] === word) {
+                possibleMatches.push(array[i]);
+              }
+            }
           }
         }
-        return false;
+        if(possibleMatches !== []) {
+          return possibleMatches;
+        } else {
+          return false;
+        }
       };
 
       var splitCommandIntoArray = function(command) {
@@ -216,8 +245,9 @@ angular.module('lifeOfText.services', [])
         return variations;
       };
 
-      var setObjects = function (newObjects) {
-        objects = newObjects;
+      var setObjects = function(objectsInRoom, objectsInInventory) {
+        objects = objectsInRoom;
+        inventory = objectsInInventory;
       };
 
       return {
