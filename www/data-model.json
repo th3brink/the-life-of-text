@@ -157,9 +157,9 @@
             "commands": {
             },
             "location": {
-                "north": 2,
-                "south": 1,
-                "visited": true
+                "north": 3,
+                "south": 0,
+                "visited": false
             },
             "allowed": {
                 "need":[
@@ -213,7 +213,8 @@
             "location": {
                 "north": 2,
                 "south": 1,
-                "visited": true
+                "west": 0,
+                "visited": false
             },
             "allowed": {
                 "need":[

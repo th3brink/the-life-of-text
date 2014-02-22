@@ -15,6 +15,28 @@ angular.module('lifeOfText.services')
         };
         self.getSilentiStory();
 
+        self.getCurrentLocation = function () {
+            if (self.silenti.scenes[self.silenti.players.self.location]) {
+                return self.silenti.scenes[self.silenti.players.self.location]
+            }
+            return 'Invalid'
+        };
+        self.allowedMove = function (loc) {
+            if (self.silenti.scenes[loc] && self.silenti.scenes[loc].allowed.denied) {
+                return false;
+            }
+            return true;
+        };
+        self.setCurrentLocation = function (newLoc) {
+            if (self.silenti.scenes[newLoc]) {
+                self.silenti.players.self.location = newLoc;
+            }
+            return 'Invalid'
+        };
+        self.getPlayerSelf = function () {
+            return self.silenti.players.self;
+        };
+
         self.getInventory = function () {
             return self.silenti.players.self.inventory;
         };
