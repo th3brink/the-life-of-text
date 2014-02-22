@@ -167,9 +167,6 @@ var parser = function() {
   };
 
   return {
-    parseCommand: parseCommand,
-    variationOfWordIsInObject: variationOfWordIsInObject,
-    parseArrayIntoSyntaxJson: parseArrayIntoSyntaxJson,
-    splitCommandIntoArray: splitCommandIntoArray
+    parseCommand: parseCommand
   };
 }();
