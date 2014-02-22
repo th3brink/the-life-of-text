@@ -29,25 +29,20 @@ var parser = function() {
   var parseCommand = function(words) {
     var array = splitCommandIntoArray(words);
     parseArrayIntoSyntaxJson(array);
-    var goodSyntax = syntaxFitsVerbsSyntax();
+    var goodSyntax = isGoodSyntax();
     return goodSyntax;
   };
 
-  var syntaxFitsVerbsSyntax = function() {
-    if(syntax[0].type === "verb") {
-      return fitsSyntax(getSyntaxStructureOfVerb(syntax[0].word));
-    } else if(syntax[0].type === "direction") {
-      return "direction";
-    }
-  };
-
-  var fitsSyntax = function(sentenceStructureOfVerb) {
+  var isGoodSyntax = function() {
+    var sentenceStructureOfVerb = getSyntaxStructureOfVerb(syntax[0].word);
     var sentenceStructureOfCommand = getSentenceStructureFromSyntax();
     console.log(sentenceStructureOfCommand);
-    if(sentenceStructureOfVerb === sentenceStructureOfCommand) {
-      return true;
-    } else {
-      return false;
+    if(syntax[0].type === "verb") {
+      if(sentenceStructureOfVerb === sentenceStructureOfCommand) {
+        return true;
+      } else {
+        return false;
+      }
     }
   };
 
@@ -81,6 +76,9 @@ var parser = function() {
         type = "verb";
       } else if (isDirection(wordsInArray[i])) {
         word = isDirection(wordsInArray[i]);
+        if(i === 0) {
+          addDefaultGoVerb();
+        }
         type = "direction";
       } else {
         word = wordsInArray[i];
@@ -90,19 +88,23 @@ var parser = function() {
     }
   };
 
-  isObject = function(word) {
+  var addDefaultGoVerb = function() {
+    syntax.push({"word": "go", "type": "verb"});
+  };
+
+  var isObject = function(word) {
     return inArray(word, objects);
   };
 
-  isVerb = function(word) {
+  var isVerb = function(word) {
     return variationOfWordIsInObject(word, verbs);
   };
 
-  isDirection = function(word) {
+  var isDirection = function(word) {
     return variationOfWordIsInObject(word, directions);
   };
 
-  getSyntaxStructureOfVerb = function(word) {
+  var getSyntaxStructureOfVerb = function(word) {
     var variations;
     for(var prop in verbs) {
       if(prop === word) {
@@ -121,7 +123,7 @@ var parser = function() {
     return false;
   };
 
-  variationOfWordIsInObject = function(word, object) {
+  var variationOfWordIsInObject = function(word, object) {
     var variations;
     for(var prop in object) {
       if(prop === word) {
@@ -140,7 +142,7 @@ var parser = function() {
     return false;
   };
 
-  inObject = function(word, object) {
+  var inObject = function(word, object) {
     for(var prop in object) {
       if(prop === word) {
         return true;
@@ -149,7 +151,7 @@ var parser = function() {
     return false;
   };
 
-  inArray = function(word, array) {
+  var inArray = function(word, array) {
     for(var i = 0; i < array.length; i++) {
       if(array[i] === word) {
         return true;
