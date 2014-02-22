@@ -33,7 +33,7 @@ angular.module('lifeOfText.services')
                 currentLoc.location.visited = true;
                 setCurrentLocation(newLocation);
                 currentLoc = getCurrentLocation();
-                return {"success": true, "message": "Moved "+ direction +" to "+ currentLoc.name};
+                return {"success": true, "message": currentLoc.name + "<br/>" + currentLoc.story};
             } else {
                 return {"success": false, "message": allowedMove(currentLoc.location[direction])};
             }
