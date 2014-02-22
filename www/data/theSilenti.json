@@ -152,12 +152,6 @@
             },
             "objects": [],
             "allowed": {
-                "need":[
-                    {
-                        "object": "flashlight",
-                        "reason": "This area is dark."
-                    }
-                ],
                 "denied": false
             }
         },
