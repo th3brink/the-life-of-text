@@ -144,7 +144,7 @@ angular.module('lifeOfText.services', [])
             }
           }
         }
-        return false;
+        return '';
       };
 
       var variationOfWordIsInObject = function(word, object) {
