@@ -7,7 +7,6 @@
         "storyBy": "James Brinkerhoff"
     },
     "players": {
-
         "self": {
             "id": 0,
             "name": "Tyson",
@@ -53,8 +52,8 @@
     "scenes": [
         {
             "id": 0,
-            "name": "road outside of town",
-            "description": "",
+            "name": "Road outside of town",
+            "description": "Road outside of town",
             "type": "room",
             "story": "Welcome to the outside of town. Unfortunately, your car ran out of gas. You attempt To Fortunately, you are near town, so you are able to walk there and get some gas. Should I sto ",
             "events": {
@@ -126,7 +125,7 @@
         },
         {
             "id": 1,
-            "name": "private farm",
+            "name": "Private farm",
             "objects": [],
             "allowed": {
                 "need":[
@@ -140,8 +139,8 @@
         },
         {
             "id": 2,
-            "name": "town entrance",
-            "description": "",
+            "name": "Town entrance",
+            "description": "Town entrance",
             "type": "room",
             "story": "Whe ",
             "events": {
@@ -168,7 +167,7 @@
         },
         {
             "id": 3,
-            "name": "door to apartment",
+            "name": "Door to apartment",
             "description": "This is the door to your friend's apartment. It looks brand new despite a few scratches at the bottom. Probably a rat.",
             "type": "door",
             "story": "",
@@ -196,8 +195,8 @@
         },
         {
             "id": 4,
-            "name": "forest",
-            "description": "a dark forest that is flowing with life",
+            "name": "Forest",
+            "description": "A dark forest that is flowing with life",
             "type": "room",
             "story": "even at dusk, the forest looks dark. You glance into the forest and see eye... too many eyes. 'maybe I shouldn't head into the forest until I find a source of light', is what you think while you cower under the light.",
             "events": {

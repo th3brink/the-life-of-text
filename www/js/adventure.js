@@ -18,6 +18,11 @@ angular.module('lifeOfText.services')
             return self.silenti.adventure.name;
         };
 
+        self.getDescriptionOfCurrentScene = function() {
+            var currentLoc = getCurrentLocation();
+            return currentLoc.description;
+        };
+
         self.move = function(direction) {
             var currentLoc = getCurrentLocation();
             var newLocation = currentLoc.location[direction];
@@ -74,9 +79,7 @@ angular.module('lifeOfText.services')
         };
 
         self.getObjectsList = function() {
-            console.log("getObjectsList");
             var objects = getCurrentLocation().objects;
-            console.log(objects);
             var tmpArray = [];
             for (var i = 0; i < objects.length; i++) {
                 tmpArray.push(objects[i].name);

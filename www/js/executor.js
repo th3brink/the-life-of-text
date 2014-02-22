@@ -22,16 +22,13 @@ angular.module('lifeOfText.services')
                 return result.message;
             },
             take: function(params) {
-
-                console.log(params);
-
                 return "I'm the take function";
             },
             put: function(params) {
                 return "I'm the put function";
             },
             look: function(params) {
-                return "I'm the look function";
+                return Adventure.getDescriptionOfCurrentScene();
             },
             inventory: function(params) {
                 return Adventure.getInventory();
