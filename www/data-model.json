@@ -113,7 +113,6 @@
                 "exit": ["save"]
             },
             "commands": {
-                "go":["north", "west", "east"]
             },
             "location": {
                 "north": 2,
@@ -156,7 +155,6 @@
                 "exit": ["save"]
             },
             "commands": {
-                "go":["up", "left", "right"]
             },
             "location": {
                 "north": 2,
@@ -184,7 +182,6 @@
                 "exit": []
             },
             "commands": {
-                "go":["north"]
             },
             "location": {
                 "north": 5,
@@ -212,7 +209,6 @@
                 "exit": ["save"]
             },
             "commands": {
-                "go":["up", "left", "right"]
             },
             "location": {
                 "north": 2,
