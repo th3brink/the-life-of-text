@@ -9,9 +9,18 @@ angular.module('lifeOfText.controllers', []).controller('TermIndexCtrl', functio
 
             if (parsed.success) {
                 output = Executor.executeCommand(parsed.function);
-
-                if (typeof output !== String) {
-                    output = output.toString();
+                //console.log(output);
+                if (typeof output === "object") {
+                    if(output.length !== 0) {
+                        var tempString = '';
+                        for (num = 0; num < output.length; num++) {
+                            tempString += output[num].toString() + '<br />';
+                            console.log(output[num].toString());
+                        }
+                        output = tempString;
+                    }
+                    else { output = 'There is nothing in your inventory.'; }
+                    //console.log(typeof tempString);
                 }
 
             } else {
