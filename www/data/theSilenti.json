@@ -15,7 +15,7 @@
             "health": 100,
             "attack": 2,
             "location": 0,
-            "items": [
+            "inventory": [
             ]
         },
         "others": [
@@ -49,58 +49,7 @@
 
         ]
     },
-    "objects": [
-        {
-            "id": 0,
-            "name": "apartment key",
-            "nickname": "apartment key (friend's)",
-            "type": ["key"],
-            "description": "Your friend gave you a key, so you could come visit more often.",
-            "on": false,
-            "attack": 1,
-            "health": -1,
-            "uses": 1,
-            "commands": [
-                {
-                    "command":"attack",
-                    "worksOn": "players"
 
-                },
-                {
-                    "command":"unlock",
-                    "worksOn": {
-                        "scene": 0,
-                        "direction": "north"
-                    }
-
-                }
-            ]
-        },
-
-        {
-            "id": 1,
-            "name": "rock",
-            "nickname": "rock",
-            "type": ["door"],
-            "description": "This rock is as heavy as a baby.",
-            "on": false,
-            "attack": 3,
-            "health": -1,
-            "uses": -1,
-            "locked": false,
-            "commands": [
-                {
-                    "command":"attack"
-
-
-                },
-                {
-                    "command":"bash"
-
-                }
-            ]
-        }
-    ],
     "scenes": [
         {
             "id": 0,
@@ -120,6 +69,50 @@
                 "visited": true
             },
             "objects": [
+                {
+                    "name": "apartment key",
+                    "nickname": "apartment key (friend's)",
+                    "type": ["key"],
+                    "description": "Your friend gave you a key, so you could come visit more often.",
+                    "on": false,
+                    "attack": 1,
+                    "health": -1,
+                    "uses": 1,
+                    "commands": [
+                        {
+                            "command":"attack",
+                            "worksOn": "players"
+
+                        },
+                        {
+                            "command":"unlock",
+                            "worksOn": 3
+
+                        }
+                    ]
+                },
+                {
+                    "name": "rock",
+                    "nickname": "rock",
+                    "type": ["door"],
+                    "description": "This rock is as heavy as a baby.",
+                    "on": false,
+                    "attack": 3,
+                    "health": -1,
+                    "uses": -1,
+                    "locked": false,
+                    "commands": [
+                        {
+                            "command":"attack"
+
+
+                        },
+                        {
+                            "command":"bash"
+
+                        }
+                    ]
+                }
             ],
             "allowed": {
                 "need": [
@@ -191,8 +184,8 @@
             "allowed": {
                 "need":[
                     {
-                        "object": 0,
-                        "reason": "You need a key to the door"
+                        "object": "apartment key",
+                        "reason": "The door appears to be locked. You look in your pocket for the key. You must have left the key in the car."
                     }
                 ],
                 "denied": false
