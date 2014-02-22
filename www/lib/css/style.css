@@ -22,3 +22,8 @@
 body, .ionic-body{
 	background-color: #073642!important;
 }
+
+p {
+  line-height: 1.1em;
+  margin-bottom: 2.2em;
+}

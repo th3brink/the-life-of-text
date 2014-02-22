@@ -23,6 +23,12 @@ angular.module('lifeOfText', ['ionic', 'lifeOfText.services', 'lifeOfText.contro
       templateUrl: "templates/tabs.html"
     })
 
+    .state('menu1', {
+      url: "/menu1",
+      abstract: true,
+      templateUrl: "templates/side.html"
+    })
+
     // the pet tab has its own child nav-view and history
     .state('tab.term', {
       url: '/term',

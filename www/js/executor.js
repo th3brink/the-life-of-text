@@ -45,8 +45,57 @@ angular.module('lifeOfText.services')
             }
         };
 
-        return {
-            executeCommand: executeCommand
-        };
+    	var commands = {
+	    	go: function(params) {
+                var currentLoc = Adventure.getCurrentLocation(),
+                    returnMe = "";
+                if (currentLoc.location[params] !== null && Adventure.allowedMove(currentLoc.location[params])) {
+                    currentLoc.location.visited = true;
+                    Adventure.setCurrentLocation(currentLoc.location[params]);
+                    currentLoc = Adventure.getCurrentLocation();
+                    returnMe = "Moved "+ params +" to "+ currentLoc.name;
+                } else {
+                    returnMe = "invalid location";
+                }
+	    		return returnMe;
+	    	},
+	    	take: function(params) {
+
+                console.log(params)
+
+	    		return "I'm the take function";
+	    	},
+	    	put: function(params) {
+	    		return "I'm the put function";
+	    	},
+	    	look: function(params) {
+	    		return "I'm the look function";
+	    	},
+	    	inventory: function(params) {
+	    		return Adventure.getInventory();
+	    	},
+	    	use: function(params) {
+	    		return "I'm the use function";
+	    	},
+	    	help: function(params) {
+	    		helpString = "************<br>" +
+	    					 "*** HELP ***<br>" +
+	    					 "************<br>" +
+	    					 "These are the allowed commands:<br>" +
+	    					 "inventory: See what you are currently holding.<br>" +
+					         "go: Direction to go (n, s, e, w).<br>" +
+					         "look: See what is around you.<br>" +
+					         "put: Drop an object from your inventory.<br>" +
+					         "use: Combine 2 objects.<br>" +
+					         "take: Pick up an object.<br>" +
+					         "help: This screen. Type help 'command' for other uses.<br>";
+
+				return helpString;
+	    	}
+	    };
+
+    	return {
+    		executeCommand: executeCommand
+    	};
     }
 );

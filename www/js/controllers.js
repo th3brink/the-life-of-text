@@ -1,7 +1,4 @@
-angular.module('lifeOfText.controllers', [])
-
-.controller('TermIndexCtrl', function($location, $scope, Parser, Executor) {
-
+angular.module('lifeOfText.controllers', []).controller('TermIndexCtrl', function($location, $scope, $sce, Parser, Executor) {
     $scope.console = [];
     $scope.command = "";
     var output = "";
@@ -11,23 +8,26 @@ angular.module('lifeOfText.controllers', [])
             var parsed = Parser.parseCommand($scope.command);
 
             if (parsed.success) {
-                //run this stuff
                 output = Executor.executeCommand(parsed.function);
-                //output = "response from executer service";
+
+                if (typeof output !== String) {
+                    output = output.toString();
+                }
+
             } else {
                 output = parsed.message;
             }
 
+            output = $sce.trustAsHtml(output);
+
             $scope.console.push({
-                input: $scope.command,
+                input: '>' + $scope.command,
                 output: output
             });
-
             $scope.command = "";
             output = "";
         }
     };
-
     $scope.$on('fin', function(ngRepeatFinishedEvent) {
         document.getElementById("terminal").scrollTop = document.getElementById("terminal").scrollHeight;
     });
