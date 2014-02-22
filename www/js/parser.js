@@ -8,12 +8,12 @@ angular.module('lifeOfText.services', [])
         "inventory": {"variations": ["inv", "inventory"], "structure": "inventory"},
         "go": {"variations": ["go", "walk"], "structure": "go {{direction}}"},
         "look": {"structure": "look [[at] {{object}}]"},
-        "put": {"variations":["put", "drop"], "structure": "put {{object}} on {{object}}"},
-        "use": {"structure": "use {{object}} [on {{object}}]"},
-        "take": {"variations": ["take", "grab", "get"], "structure": "take {{object}}"},
+        "put": {"variations":["put", "drop"], "structure": "put [the] {{object}} on [the] {{object}}"},
+        "use": {"structure": "use [the] {{object}} [on {{object}}]"},
+        "take": {"variations": ["take", "grab", "get"], "structure": "take [the] {{object}}"},
         "help": {"structure": "help [{{object}}]"},
-        "attack": {"variations": ["attack", "fight", "bash"], "structure": "attack [with] {{object}}"},
-        "consume": {"variations": ["consume", "eat"], "structure": "consume {{object}}"}
+        "attack": {"variations": ["attack", "fight", "bash"], "structure": "attack [with] [the] {{object}}"},
+        "consume": {"variations": ["consume", "eat"], "structure": "consume [the] {{object}}"}
       };
       var directions = {
         "north": {"variations": ["n", "north"]},
