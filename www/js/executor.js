@@ -20,7 +20,7 @@ angular.module('lifeOfText.services')
                 return result.message;
             },
             take: function(params) {
-                return "I'm the take function";
+                return Adventure.takeObject(params[0]);
             },
             put: function(params) {
                 return "I'm the put function";

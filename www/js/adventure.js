@@ -67,7 +67,7 @@ angular.module('lifeOfText.services')
         self.getInventory = function() {
             return self.silenti.players.self.inventory;
         };
-        self.inventoryAdd = function (addMe) {
+        inventoryAdd = function (addMe) {
             self.silenti.players.self.inventory.push(addMe);
         };
         self.inventoryRemove = function (addMe) {
@@ -76,6 +76,11 @@ angular.module('lifeOfText.services')
                     self.silenti.players.self.inventory.splice(i, 1);
                 }
             }
+        };
+
+        self.takeObject = function(object) {
+            inventoryAdd(object);
+            return "take the " + object;
         };
 
         self.getObjectsList = function() {
