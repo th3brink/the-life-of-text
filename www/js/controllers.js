@@ -1,20 +1,31 @@
 angular.module('lifeOfText.controllers', [])
 
-.controller('TermIndexCtrl', function($location, $scope, Parser) {
+.controller('TermIndexCtrl', function($location, $scope, Parser, Executor) {
 
-    var listOfCommands = ["look", "east", "west", "north", "south", "pickup", "pick up", "open", "combine", "help", "talk"];
-    var isInCommands = false;
     $scope.console = [];
     $scope.command = "";
+    var output = "";
+
     $scope.submit = function() {
         if ($scope.command) {
 
+            var parsed = Parser.parseCommand($scope.command);
+
+            if (parsed.success) {
+                //run this stuff
+                output = Executor.executeCommand(parsed.function);
+                //output = "response from executer service";
+            }
+
+            else { output = parsed.message; }
+
             $scope.console.push({
                 input: $scope.command,
-                output: Parser.parseCommand($scope.command)
+                output: output
             });
+
             $scope.command = "";
-            
+            output = "";
         }
     };
 

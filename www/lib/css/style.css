@@ -19,6 +19,6 @@
     margin-left: auto;
 }
 
-body {
-	background-color: #073642;
+body, .ionic-body{
+	background-color: #073642!important;
 }
