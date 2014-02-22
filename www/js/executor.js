@@ -32,7 +32,13 @@ angular.module('lifeOfText.services')
             },
             help: function(params) {
                 return "I'm the help function";
-            }
+            },
+            attack: function(params) {
+                return "Attack all the things!";
+            },
+            eat: function(params) {
+                return "Eat all the things!";
+            },
 
         };
 
