@@ -18,7 +18,7 @@ angular.module('lifeOfText.services', [])
         "take": {"variations": ["take", "grab"], "structure": "take {{object}}"},
         "help": {"structure": "help [{{object}}]"},
         "attack": {"variations": ["attack", "fight"], "structure": "attack {{object}}"},
-        "eat": {"variations": ["eat", "consume"], "structure": "eat {{object}}"}
+        "consume": {"variations": ["consume", "eat"], "structure": "consume {{object}}"}
       };
       var directions = {
         "north": {"variations": ["n", "north"]},

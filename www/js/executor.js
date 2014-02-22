@@ -36,8 +36,8 @@ angular.module('lifeOfText.services')
             attack: function(params) {
                 return "Attack all the things!";
             },
-            eat: function(params) {
-                return "Eat all the things!";
+            consume: function(params) {
+                return "Consume all the things!";
             },
 
         };
