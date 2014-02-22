@@ -13,6 +13,10 @@ angular.module('lifeOfText.services')
         };
         self.getSilentiStory();
 
+        self.getStoryDescription = function() {
+            return self.silenti.adventure.name;
+        };
+
         self.move = function(direction) {
             var currentLoc = getCurrentLocation();
             var newLocation = currentLoc.location[direction];
@@ -35,8 +39,10 @@ angular.module('lifeOfText.services')
             var reason = "";
             if (self.silenti.scenes[loc] && self.silenti.scenes[loc].allowed.denied) {
                 for(var i = 0; i < self.silenti.scenes[loc].allowed.need.length; i++) {
-                    //TODO: make the reasons show up new lines
-                    reason += self.silenti.scenes[loc].allowed.need[i].reason + " ";
+                    if(i < 0) {
+                        reason += '<br/>';
+                    }
+                    reason += self.silenti.scenes[loc].allowed.need[i].reason;
                 }
                 return reason;
             }

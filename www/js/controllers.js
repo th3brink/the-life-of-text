@@ -29,16 +29,6 @@ angular.module('lifeOfText.controllers', [])
         }
     };
 
-    function go () {
-
-    }
-//
-//    $scope.interp = function (command) {
-//        var func = Parser.parseCommand(command);
-//        var runMe =
-//
-//    };
-
     $scope.$on('fin', function(ngRepeatFinishedEvent) {
         document.getElementById("terminal").scrollTop = document.getElementById("terminal").scrollHeight;
     });
