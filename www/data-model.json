@@ -1,0 +1,155 @@
+{
+    "adventure": {
+        "name": "The Silenti",
+        "type": "Horror",
+        "description": "You find yourself in a dark, smoggy town called Silenti. You are here to find your friend who stopped talking to you a few months ago. ",
+        "creator": "The Life of Text",
+        "storyBy": "James Brinkerhoff"
+    },
+    "players": {
+
+        "self": {
+            "id": 0,
+            "name": "Tyson",
+            "description": "A quick witted person who is seeking his friend. You might want to get to know yourself better.",
+            "health": 100,
+            "attack": 2,
+            "location": 0,
+            "items": [
+                0
+            ]
+        },
+        "others": [
+            {
+                "id": 1,
+                "name": "",
+                "description": "",
+                "health": 0,
+                "location": 2
+            }
+        ],
+        "computer": [
+            {
+                "id": 2,
+                "name": "Jonathon",
+                "description": "A good friend of Tyson. Jonathon and you once shared rooms during college.",
+                "health": 60,
+                "attack": 5,
+                "friendly": true,
+                "location": 5
+            },
+            {
+                "id": 3,
+                "name": "rat",
+                "description": "Rabid looking rat. Looks like it will attack me.",
+                "health": 10,
+                "attack": 1,
+                "friendly": false,
+                "location": 1
+            }
+
+        ]
+    },
+    "objects": [
+        {
+            "id": 0,
+            "name": "apartment key",
+            "nickname": "apartment key (friend's)",
+            "type": ["key"],
+            "description": "Your missing friend gave you a key, so you could come take care of his apartment if something were to happen to him.",
+            "on": false,
+            "attack": 1,
+            "health": -1,
+            "uses": 1,
+            "commands": [
+                {
+                    "command":"attack",
+                    "worksOn": "players"
+
+                },
+                {
+                    "command":"unlock",
+                    "worksOn": 1
+
+                }
+            ]
+        },
+
+        {
+            "id": 1,
+            "name": "apartment door",
+            "nickname": "apartment door (friend's)",
+            "type": ["door"],
+            "description": "This is the door to your friend's apartment. It look brand new despite a few scratches at the bottom. Probably a rat.",
+            "on": false,
+            "attack": 1,
+            "health": 200,
+            "uses": 1,
+            "locked": true,
+            "commands": [
+                {
+                    "command":"open"
+
+
+                },
+                {
+                    "command":"unlock"
+
+                }
+            ]
+        },
+
+        {
+            "id": 1,
+            "name": "rock",
+            "nickname": "rock",
+            "type": ["door"],
+            "description": "This rock is as heavy as a baby.",
+            "on": false,
+            "attack": 3,
+            "health": -1,
+            "uses": -1,
+            "locked": false,
+            "commands": [
+                {
+                    "command":"attack"
+
+
+                },
+                {
+                    "command":"bash"
+
+                }
+            ]
+        }
+    ],
+    "scenes": [
+        {
+            "id": 0,
+            "name": "start",
+            "description": "",
+            "story": "Unfortunately, your car broke down. Fortunately, you are near town, so you are able to walk there. Your Friend, ",
+            "events": {
+                "enter": ["save", "attack"],
+                "exit": ["save"]
+            },
+            "commands": {
+                "go":["up", "left", "right"]
+            },
+            "location": {
+                "x": 2,
+                "y": 0,
+                "visited": true
+            },
+            "allowed": {
+                "need":[
+                    {
+                        "object": "flashlight",
+                        "reason": "This area is dark"
+                    }
+                ],
+                "denied": false
+            }
+        }
+    ]
+}

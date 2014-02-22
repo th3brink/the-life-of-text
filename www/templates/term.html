@@ -1,4 +1,6 @@
-<div class="term" id="terminal"><p ng-repeat="commands in console track by $index" on-finish-render="fin">{{ commands }}</p></div>
+<div class="term" id="terminal">
+    <p style="margin: 0" ng-repeat="commands in console track by $index" on-finish-render="fin">{{ commands }}</p>
+</div>
 <form ng-submit="submit()" class="command">
 <label class="item item-input">
     <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>

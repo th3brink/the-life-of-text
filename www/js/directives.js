@@ -1,4 +1,4 @@
-angular.module('starter.directives', [])
+angular.module('lifeOfText.directives', [])
 .directive('onFinishRender', function ($timeout) {
     return {
         restrict: 'A',
