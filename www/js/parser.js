@@ -43,10 +43,9 @@ var parser = function() {
     if(syntax[0].type === "verb") {
       if(sentenceStructureOfVerb === sentenceStructureOfCommand) {
         return {"success": true, "structure": sentenceStructureOfCommand};
-      } else {
-        return {"success": false, "message": getSyntaxError()};
       }
     }
+    return {"success": false, "message": getSyntaxError()};
   };
 
   var getSentenceStructureFromSyntax = function() {
