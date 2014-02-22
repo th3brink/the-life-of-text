@@ -25,39 +25,44 @@ var parser = function() {
     "west": {"variations": ["w", "west"]},
     "northwest": {"variations": ["nw", "northwest"]}
   };
-  var prepositions = [
-    "at",
-    "on",
-    "onto",
-    "with"
-  ];
-  var patterns = {
-    "verb": "verb",
-    "verbDirection": "verb direction",
-    "direction": "direction",
-    "verbObject": "verb object",
-    "verbPrepositionObject": "verb preposition object",
-    "verbObjectPrepositionObject": "verb object preposition object"
-  };
 
   var parseCommand = function(words) {
     var array = splitCommandIntoArray(words);
     parseArrayIntoSyntaxJson(array);
-    var json = syntaxFitsVerbsSyntax();
+    var goodSyntax = syntaxFitsVerbsSyntax();
+    return goodSyntax;
   };
 
   var syntaxFitsVerbsSyntax = function() {
     if(syntax[0].type === "verb") {
-      fitsSyntax(getSyntaxStructureOfVerb(syntax[0].word));
+      return fitsSyntax(getSyntaxStructureOfVerb(syntax[0].word));
     } else if(syntax[0].type === "direction") {
-      //---------->
+      return "direction";
     }
   };
 
-  var fitsSyntax = function(sentenceStructure) {
-    console.log("fitsSyntax");
-    console.log(syntax);
-    console.log(sentenceStructure);
+  var fitsSyntax = function(sentenceStructureOfVerb) {
+    var sentenceStructureOfCommand = getSentenceStructureFromSyntax();
+    console.log(sentenceStructureOfCommand);
+    if(sentenceStructureOfVerb === sentenceStructureOfCommand) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  var getSentenceStructureFromSyntax = function() {
+    var sentenceStructure = "";
+    var i = 0;
+    for(var prop in syntax) {
+      if(i === 0 || syntax[prop].type === "nothing") {
+        sentenceStructure += syntax[prop].word + " ";
+      } else {
+        sentenceStructure += "{{" + syntax[prop].type + "}} ";
+      }
+      i++;
+    }
+    return sentenceStructure.trim();
   };
 
   /*var getSyntaxError = function () {
@@ -77,9 +82,6 @@ var parser = function() {
       } else if (isDirection(wordsInArray[i])) {
         word = isDirection(wordsInArray[i]);
         type = "direction";
-      } else if (isPreposition(wordsInArray[i])) {
-        word = isPreposition(wordsInArray[i]);
-        type = "preposition";
       } else {
         word = wordsInArray[i];
         type = "nothing";
@@ -98,10 +100,6 @@ var parser = function() {
 
   isDirection = function(word) {
     return variationOfWordIsInObject(word, directions);
-  };
-
-  isPreposition = function(word) {
-    return inArray(word, prepositions);
   };
 
   getSyntaxStructureOfVerb = function(word) {
