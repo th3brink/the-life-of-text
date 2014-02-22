@@ -5,9 +5,13 @@
     </p>
 </div>
 <form ng-submit="submit()" class="command">
-<label class="item item-input">
-    <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
-    <i class="icon ion-chevron-right"></i>&nbsp;
-    <input type="text" ng-model="command"><button class="button button-calm" ng-click="submit()">Submit</button></input>
-</label></form>
+    <label class="item item-input">
+        <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
+        <i class="icon ion-chevron-right"></i>&nbsp;
+        <input type="text" ng-model="command"><button class="button button-calm" ng-click="submit()">Submit</button></input>
+    </label>
+</form>
 <br/>
+<div class="watermark-title">
+    <h2>{{adventure.name}}</h2>
+</div>

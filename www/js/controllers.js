@@ -3,6 +3,10 @@ angular.module('lifeOfText.controllers', []).controller('TermIndexCtrl', functio
     $scope.command = "";
     var output = "";
 
+    $scope.adventure = {
+        name: "The Silenti"
+    };
+
     $scope.submit = function() {
         if ($scope.command) {
             var parsed = Parser.parseCommand($scope.command);

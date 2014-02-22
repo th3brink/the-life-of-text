@@ -2,9 +2,35 @@
 
 .ionic-logo {
   display: block;
-  margin: 15px auto;
+  /*margin: 15px auto;*/
   width: 96px;
   height: 96px;
+}
+
+.center {
+    /*width: 50%;*/
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+}
+
+.watermark-title {
+    width:50%;
+    opacity: 0.2;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.watermark-title h2 {
+    text-align: center;
+    font-size: 40px;
+}
+
+.top-bar img {
+     display: inline-block;
+}
+.top-bar h2 {
+    vertical-align: top;
+    display: inline-block;
 }
 
 .home-game-container {
@@ -12,7 +38,7 @@
     height: 90%;
     background-color: darkslategray;
     opacity: 0.9;
-    box-shadow: inset 0 0 4 4 #000000;
+    box-shadow: inset 0 0 4px 1px #000000;
     margin-left: auto;
     margin-right: auto;
 }
