@@ -46,12 +46,16 @@ angular.module('lifeOfText.services')
             if (self.silenti.scenes[loc]) {
                 if(self.silenti.scenes[loc].allowed.need) {
                     for(var i = 0; i < self.silenti.scenes[loc].allowed.need.length; i++) {
-                        if(i < 0) {
-                            reason += '<br/>';
+                        if(! hasObjectInInventory(self.silenti.scenes[loc].allowed.need[i].object)) {
+                            if(i < 0) {
+                                reason += '<br/>';
+                            }
+                            reason += self.silenti.scenes[loc].allowed.need[i].reason;
                         }
-                        reason += self.silenti.scenes[loc].allowed.need[i].reason;
                     }
-                    return "You can't go there. " + reason;
+                    if(reason !== "") {
+                        return "You can't go there. " + reason;
+                    }
                 } else if(self.silenti.scenes[loc].allowed.denied) {
                     return "You can't go there.";
                 }
@@ -80,6 +84,16 @@ angular.module('lifeOfText.services')
                     self.silenti.players.self.inventory.splice(i, 1);
                 }
             }
+        };
+        hasObjectInInventory = function(object) {
+            var objects = self.getInventory();
+            var hasObject = false;
+            for (var i = 0; i < objects.length; i++) {
+                if(objects[i] === object) {
+                    hasObject = true;
+                }
+            }
+            return hasObject;
         };
 
         self.takeObject = function(object) {
