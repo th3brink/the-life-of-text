@@ -59,7 +59,7 @@ angular.module('lifeOfText', ['ionic', 'lifeOfText.services', 'lifeOfText.contro
         }
       }
     })
-    /*
+
     .state('tab.about', {
       url: '/about',
       views: {
@@ -68,7 +68,7 @@ angular.module('lifeOfText', ['ionic', 'lifeOfText.services', 'lifeOfText.contro
         }
       }
     });
-    */
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/home');
 

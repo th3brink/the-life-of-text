@@ -53,7 +53,7 @@
         {
             "id": 0,
             "name": "Road outside of town",
-            "description": "Road outside of town",
+            "description": "The road is a typical asphalt based road with rocks and fluffy animals off to the side of it.",
             "type": "room",
             "story": "\"Welcome to Silenti!\", a sign informs you. Too bad you ran out of gas so close to town. Fortunately, you know how walk, so you can go to town and get some gas. You should probably stop by your friends place for some help before getting gas",
             "events": {
@@ -72,7 +72,8 @@
                     "name": "apartment key",
                     "nickname": "apartment key (friend's)",
                     "type": ["key"],
-                    "description": "Your friend gave you a key, so you could come visit more often.",
+                    "description": "Seems to be a normal apartment key... besides the My little Pony character pic that is embedded into the base of the key.",
+                    "story": "Your friend gave you a key, so you could come visit more often. I should probably talk to him about his My little Pony addiction... Dang, Bronies",
                     "on": false,
                     "attack": 1,
                     "health": -1,
@@ -96,6 +97,7 @@
                     "nickname": "rock",
                     "type": ["door"],
                     "description": "This rock is as heavy as a baby.",
+                    "story": "",
                     "on": false,
                     "attack": 3,
                     "health": -1,
@@ -132,7 +134,7 @@
             "name": "Town entrance",
             "description": "Town entrance",
             "type": "room",
-            "story": "You are now in the town entrance.",
+            "story": "You notice some smog moving in from the forest. The town seems peaceful. It should be easy to find my friends apartment",
             "events": {
                 "enter": ["save", "attack"],
                 "exit": ["save"]
@@ -211,7 +213,7 @@
             "name": "Apartment",
             "description": "Apartment",
             "type": "room",
-            "story": "You are now in the apartment!",
+            "story": "You notice fairly quickly that there is a lot of trash laying around. You laugh to yourself and think back to the good old college days when your friend was a clean, almost OCD like person. You realize it has been way to long since you have visited him. Hopefully, everything is fine.",
             "events": {
                 "enter": ["save"],
                 "exit": ["save"]
@@ -223,7 +225,17 @@
                 "south": 0,
                 "visited": false
             },
-            "objects": [],
+            "objects": [
+                {
+                    "id": 3,
+                    "name": "rat",
+                    "description": "Rabid looking rat. Looks like it will attack you.",
+                    "health": 10,
+                    "attack": 1,
+                    "friendly": false,
+                    "location": 1
+                }
+            ],
             "allowed": {
                 "denied": false
             }
