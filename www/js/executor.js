@@ -5,13 +5,11 @@ angular.module('lifeOfText.services')
             var action = data.name;
             var params = data.params;
             return commands[action](params);
-            
         };
 
-        Adventure.init(function () {
+        Adventure.init(function() {
             Parser.setObjects(Adventure.getObjectsList());
         });
-
 
         var commands = {
             go: function(params) {
@@ -45,9 +43,7 @@ angular.module('lifeOfText.services')
             consume: function(params) {
                 return "Consume all the things!";
             }
-
         };
-	    	
 
         return {
             executeCommand: executeCommand

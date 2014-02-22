@@ -8,16 +8,15 @@ angular.module('lifeOfText.controllers', [])
 
     $scope.submit = function() {
         if ($scope.command) {
-
             var parsed = Parser.parseCommand($scope.command);
 
             if (parsed.success) {
                 //run this stuff
                 output = Executor.executeCommand(parsed.function);
                 //output = "response from executer service";
+            } else {
+                output = parsed.message;
             }
-
-            else { output = parsed.message; }
 
             $scope.console.push({
                 input: $scope.command,
