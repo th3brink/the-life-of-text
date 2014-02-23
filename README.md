@@ -1,6 +1,4 @@
-ionic-angular-cordova-seed
+The Life of Text
 ==========================
 
-The perfect starting point for an Ionic project.
-
-- [Ionic Tutorials](http://ionicframework.com/tutorials/)
+A framework for text-based games that runs in javascript.
